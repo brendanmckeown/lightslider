@@ -93,9 +93,10 @@
             },
             controls: function () {
                 if (settings.controls) {
-                    $el.after('<div class="csAction"><a class="csPrev">' + settings.prevHtml + '</a><a class="csNext">' + settings.nextHtml + '</a></div>');
-                    var $prev = $slide.find('.csPrev');
-                    var $next = $slide.find('.csNext');
+                    $slide.after('<div class="csAction"><a class="csPrev">' + settings.prevHtml + '</a><a class="csNext">' + settings.nextHtml + '</a></div>');
+                    var $outer = $slide.parent('.csSlideOuter');
+                    var $prev = $outer.find('.csPrev');
+                    var $next = $outer.find('.csNext');
                     $prev.bind('click', function () {
                         $el.goToPrevSlide();
                         clearInterval(interval);
@@ -154,11 +155,11 @@
                     refresh.sSW();
                 } else {
                     if(settings.proportion !== ''){
-                        $el.css({'height':'0px','padding-bottom':settings.proportion});    
+                        $el.css({'height':'0px','padding-bottom':settings.proportion});
                     }else{
                         var height = $children.height();
                         var proportion = (height * 100)/elWidth;
-                        $el.css({'height':'0px','padding-bottom':proportion+'%'});    
+                        $el.css({'height':'0px','padding-bottom':proportion+'%'});
                     }
                     $el.addClass('csFade');
                     if (!this.doCss()) {
